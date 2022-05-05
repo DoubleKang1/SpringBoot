@@ -1,4 +1,4 @@
-package com.generation.farmacia.controller;
+package com.generation.lojadegames.controller;
 
 import java.util.List;
 
@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.generation.farmacia.model.Produto;
-import com.generation.farmacia.repository.ProdutoRepository;
+import com.generation.lojadegames.model.Produto;
+import com.generation.lojadegames.repository.ProdutoRepository;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package com.generation.farmacia.controller;
+package com.generation.lojadegames.controller;
 
 import java.util.List;
 
@@ -15,46 +15,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.farmacia.model.Produto;
-import com.generation.farmacia.repository.ProdutoRepository;
-
+import com.generation.lojadegames.model.Categoria;
+import com.generation.lojadegames.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("/produto")
+@RequestMapping("/categoria")
 @CrossOrigin("*")
-public class ProdutoController {
+public class CategoriaController {
 	
 	@Autowired
-	private ProdutoRepository repository;
+	private CategoriaRepository repository;
 	
 	@GetMapping
-	public ResponseEntity<List<Produto>> GetAll(){
+	public ResponseEntity<List<Categoria>> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Produto> post (@RequestBody Produto produto){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(produto));		
+	public ResponseEntity<Categoria> post (@RequestBody Categoria categoria){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));		
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Produto> GetById(@PathVariable Long id){
+	public ResponseEntity<Categoria> GetById(@PathVariable Long id){
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());	
 	}
 	
-	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Produto>> GetByNome(@PathVariable String nome){
-		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
+	@GetMapping("/tipo/{tipo}")
+	public ResponseEntity<List<Categoria>> GetByTipo(@PathVariable String tipo){
+		return ResponseEntity.ok(repository.findAllByTipoContainingIgnoreCase(tipo));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Produto> put (@RequestBody Produto produto){
-		return repository.findById(produto.getId())
-				.map(resposta -> ResponseEntity.ok().body(repository.save(produto)))
+	public ResponseEntity<Categoria> put (@RequestBody Categoria categoria){
+		return repository.findById(categoria.getId())
+				.map(resposta -> ResponseEntity.ok().body(repository.save(categoria)))
 				.orElse(ResponseEntity.notFound().build());
-
 	}
 	
 	@DeleteMapping("/{id}")
@@ -67,6 +65,7 @@ public class ProdutoController {
 				})
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 
 }
+
