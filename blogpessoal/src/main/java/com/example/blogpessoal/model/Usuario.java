@@ -36,6 +36,20 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario" , cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
+	
+	//ordem dos atributos do construtor tem que ser a mesma ordem da model
+	//construtor cheio
+	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+	
+	//construtor vazio
+	public Usuario() {}
+
 
 	public Long getId() {
 		return id;

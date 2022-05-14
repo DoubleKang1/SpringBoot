@@ -31,6 +31,18 @@ public class UsuarioService {
 				return Optional.of(repository.save(usuario));
 		}
 		
+		public Optional<Usuario>atualizarUsuario(Usuario usuario){
+			
+			if(repository.findById(usuario.getId()).isPresent())
+				usuario.setSenha(criptografarSenha(usuario.getSenha()));
+			
+				
+				
+				return Optional.ofNullable(repository.save(usuario));
+				
+				
+		}
+		
 		//Função para criptografar a senha digitada pelo usuário 
 		private String criptografarSenha(String senha) {
 
